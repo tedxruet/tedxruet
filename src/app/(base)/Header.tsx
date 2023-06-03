@@ -211,7 +211,11 @@ const ThemeSwitch = () => {
   };
 
   return (
-    <Button variant={"ghost"} onClick={handleThemeChange}>
+    <Button
+      variant={"ghost"}
+      onClick={handleThemeChange}
+      aria-label="Swith theme"
+    >
       <MoonIcon className="dark:hidden" />
       <SunIcon className="hidden dark:inline" />
     </Button>

@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import Header from "./Header";
 
 export default function BaseLayout({
@@ -10,6 +11,7 @@ export default function BaseLayout({
       <Header />
       <div className="h-28 md:h-16"></div>
       {children}
+      <Footer />
     </>
   );
 }
