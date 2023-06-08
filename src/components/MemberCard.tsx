@@ -1,13 +1,4 @@
-"use client";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { ExternalLinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

@@ -21,14 +21,14 @@ export default async function Home() {
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 dark:bg-black bg-white opacity-10"></div>
+          <div className="absolute inset-0 bg-background opacity-10"></div>
           <div className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <h1 className="text-5xl lg:text-6xl text-center text-white mb-8 font-light">
+            <h1 className="text-5xl lg:text-6xl text-center mb-8 dark:font-light drop-shadow-text">
               {lastEvent.title}
             </h1>
             <Link href={`/events/${lastEvent.slug}`}>
               <Button
-                className="uppercase mx-auto block"
+                className="uppercase mx-auto block drop-shadow-text"
                 variant={"default"}
                 size={"lg"}
               >

@@ -1,16 +1,22 @@
+import { getEvents } from "@/lib/sanity/events";
 import Footer from "./Footer";
 import Header from "./Header";
+import { Suspense } from "react";
+import LoadingScreen from "./loading";
 
-export default function BaseLayout({
+export const revalidate = 3600;
+
+export default async function BaseLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const events = await getEvents();
   return (
     <>
-      <Header />
+      <Header events={events} />
       <div className="h-28 md:h-16"></div>
-      {children}
+      <Suspense fallback={<LoadingScreen />}>{children}</Suspense>
       <Footer />
     </>
   );

@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import type { LatestEventData } from "@/lib/types";
 
 const community: { title: string; href: string; description: string }[] = [
   {
@@ -37,7 +38,7 @@ const community: { title: string; href: string; description: string }[] = [
   },
 ];
 
-export default function Header() {
+export default function Header({ events }: { events: LatestEventData[] }) {
   const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
@@ -56,26 +57,29 @@ export default function Header() {
     >
       <div className="flex flex-col md:items-center p-2 md:flex-row gap-2 md:gap-6">
         <div className="flex justify-between">
-          <Image
-            src="/images/brand-logo-light.png"
-            className="dark:hidden"
-            width={197}
-            height={44}
-            alt="TEDxRUET logo"
-          />
-          <Image
-            src="/images/brand-logo-dark.png"
-            className="hidden dark:inline"
-            width={197}
-            height={44}
-            alt="TEDxRUET logo"
-          />
+          <Link href="/">
+            <Image
+              src="/images/brand-logo-light.png"
+              className="dark:hidden"
+              width={197}
+              height={44}
+              alt="TEDxRUET logo"
+            />
+            <Image
+              src="/images/brand-logo-dark.png"
+              className="hidden dark:inline"
+              width={197}
+              height={44}
+              alt="TEDxRUET logo"
+            />
+          </Link>
+
           <div className="md:hidden">
             <ThemeSwitch />
           </div>
         </div>
         <div className="mr-auto ml-0">
-          <Navigation />
+          <Navigation events={events} />
         </div>
         <div className="hidden md:block">
           <ThemeSwitch />
@@ -85,7 +89,7 @@ export default function Header() {
   );
 }
 
-function Navigation() {
+function Navigation({ events }: { events: LatestEventData[] }) {
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -109,15 +113,15 @@ function Navigation() {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable community built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
-              </ListItem>
+              {events.map((ev) => (
+                <ListItem
+                  href={`/events/${ev.slug}`}
+                  title={ev.title}
+                  key={ev.slug}
+                >
+                  {ev.preamble}
+                </ListItem>
+              ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -159,23 +163,24 @@ function Navigation() {
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+>(({ className, title, children, href, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
+        <Link
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
+          href={href!}
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   );
