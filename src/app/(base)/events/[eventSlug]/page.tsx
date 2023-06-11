@@ -20,7 +20,6 @@ type Props = { params: { eventSlug: string } };
 
 export const revalidate = 300;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  console.log(params);
   const event = await getEvent(params.eventSlug);
 
   return {
@@ -76,19 +75,16 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
             value={event.content}
             components={{
               types: {
-                image: ({ value }) => {
-                  console.log(value);
-                  return (
-                    <Image
-                      src={urlFor(value).url()}
-                      alt={value.alt}
-                      className="w-full h-auto"
-                      width={0}
-                      height={0}
-                      unoptimized
-                    />
-                  );
-                },
+                image: ({ value }) => (
+                  <Image
+                    src={urlFor(value).url()}
+                    alt={value.alt}
+                    className="w-full h-auto"
+                    width={0}
+                    height={0}
+                    unoptimized
+                  />
+                ),
               },
             }}
           />
