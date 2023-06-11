@@ -18,14 +18,7 @@ import type { Metadata } from "next";
 import { urlFor } from "@/lib/sanity";
 import SponsorCard from "@/components/SponsorCard";
 import SpeakerCard from "@/components/SpeakerCard";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 type Props = { params: { eventSlug: string } };
 
@@ -63,7 +56,7 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
             </CardTitle>
             <CardDescription className="flex gap-2 pt-2">
               <CalendarIcon size={24} aria-label="Date and Time:" />{" "}
-              {dayjs(event.time).format("MMM DD, YYYY HH:mm A")}
+              {dayjs(event.time).format("MMM DD, YYYY hh:mm A (TZ)")}
             </CardDescription>
             <CardDescription className="flex gap-2 pt-2">
               <MapPinIcon size={24} aria-label="Event Venue:" /> {event.venue}

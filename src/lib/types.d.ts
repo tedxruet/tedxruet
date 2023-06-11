@@ -4,7 +4,9 @@ export type LatestEventData = {
   slug: string;
   title: string;
   preamble: string;
-  coverUrl: string;
+  cover: object;
+  time: string;
+  venue: string;
 };
 
 export type LastEventData = {

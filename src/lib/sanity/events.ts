@@ -34,8 +34,10 @@ export const getEvents = async (from = 0, to = 2) => {
   *[_type=='event'] | order(_createdAt desc)[$from...$to] {
     title,
     preamble,
+    venue,
+    time,
     'slug': @['slug'].current,
-    'coverUrl': @['cover'].asset->url
+    cover
   }
   `,
     { from, to }
