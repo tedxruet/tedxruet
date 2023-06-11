@@ -22,13 +22,16 @@ const Events = async () => {
         {events.map((ev) => (
           <Card key={ev.slug} className="overflow-hidden">
             <div className="flex flex-col md:flex-row">
-              <Image
-                src={ev.coverUrl}
-                alt={ev.title}
-                width={500}
-                height={500}
-              />
-              <div>
+              <div className="flex-1">
+                <Image
+                  src={ev.coverUrl}
+                  alt={ev.title}
+                  width={500}
+                  height={500}
+                />
+              </div>
+
+              <div className="flex-1">
                 <CardHeader>
                   <CardTitle className="text-2xl"> {ev.title}</CardTitle>
                   <CardDescription className="line-clamp-4">

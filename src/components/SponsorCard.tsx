@@ -20,35 +20,18 @@ const SponsorCard = ({
   };
 }) => {
   return (
-    <Popover>
-      <PopoverTrigger className="w-full">
-        <Card className="h-full overflow-hidden">
-          <Image
-            src={sponsor.logoUrl}
-            width={350}
-            height={350}
-            alt={sponsor.name}
-            className="aspect-square w-full object-contain bg-muted dark:bg-muted-foreground"
-            loading="lazy"
-          />
-        </Card>
-      </PopoverTrigger>
-      <PopoverContent>
-        <div className="flex items-start">
-          <div className="flex-1">
-            <h5 className="line-clamp-2">{sponsor.name}</h5>
-            <p className="text-sm line-clamp-2">{sponsor.type}</p>
-          </div>
-          <div>
-            <Link href={`/sponsors/${sponsor.slug}`}>
-              <Button variant={"ghost"} size={"sm"} className="mt-2">
-                <ExternalLinkIcon />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </PopoverContent>
-    </Popover>
+    <Link href={`/sponsors/${sponsor.slug}`} aria-label={sponsor.name}>
+      <Card className="h-full overflow-hidden bg-transparent border-none">
+        <Image
+          src={sponsor.logoUrl}
+          width={350}
+          height={350}
+          alt={sponsor.name}
+          className="aspect-square w-full object-contain"
+          loading="lazy"
+        />
+      </Card>
+    </Link>
   );
 };
 

@@ -77,11 +77,11 @@ export default async function Home() {
       </section>
       <section aria-label="Partners" className="mt-12">
         <h2 className="text-center text-4xl mb-8">Our Partners</h2>
-        <div className="flex overflow-auto md:flex-wrap md:justify-center lg:max-w-screen-lg mx-auto">
+        <div className="flex overflow-auto md:flex-wrap md:justify-center mx-auto 2xl:max-w-screen-2xl bg-muted dark:bg-muted-foreground rounded-md">
           {data.event.sponsors.map((sponsor) => (
             <div
               key={sponsor.slug}
-              className="p-1 md:p-2 md:w-1/4 min-w-[300px] md:min-w-0"
+              className="p-1 md:p-2 md:w-1/4 xl:w-1/5 min-w-[240px] md:min-w-0"
             >
               <SponsorCard sponsor={sponsor} />
             </div>

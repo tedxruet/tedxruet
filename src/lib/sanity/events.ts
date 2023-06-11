@@ -52,7 +52,7 @@ export const getEvent = (slug = "") => {
       venue,
       time,
       registrationLink,
-      'gallery': gallery[]{_key, 'photoUrl': @.asset->url},
+      gallery,
       'slug': @['slug'].current,
       'coverUrl': @['cover'].asset->url,
       'speakers': speakers[] -> {

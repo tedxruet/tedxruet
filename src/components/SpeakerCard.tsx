@@ -31,7 +31,7 @@ const SpeakerCard = ({
         />
         <CardHeader>
           <CardTitle>{speaker.name}</CardTitle>
-          <CardDescription className="line-clamp-2">
+          <CardDescription className="line-clamp-3">
             {speaker.designation}
           </CardDescription>
         </CardHeader>

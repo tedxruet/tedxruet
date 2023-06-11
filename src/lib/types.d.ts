@@ -28,7 +28,7 @@ export type FullEventData = {
   time: string;
   venue: string;
   registrationLink: string | null;
-  gallery: { _key: string; photoUrl: string }[];
+  gallery: unknown[];
   content: TypedObject[];
   speakers: {
     designation: string;
