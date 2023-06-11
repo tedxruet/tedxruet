@@ -20,8 +20,8 @@ const Events = async () => {
       <h1 className="text-4xl mt-12 mb-8">TEDxRUET Events</h1>
       <div className="max-w-screen-lg">
         {events.map((ev) => (
-          <Card key={ev.slug}>
-            <div className="flex">
+          <Card key={ev.slug} className="overflow-hidden">
+            <div className="flex flex-col md:flex-row">
               <Image
                 src={ev.coverUrl}
                 alt={ev.title}

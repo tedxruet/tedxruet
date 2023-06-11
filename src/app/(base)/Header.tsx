@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import ThemeContext from "@/lib/contexts/ThemeContext";
 import type { LatestEventData } from "@/lib/types";
 
 const community: { title: string; href: string; description: string }[] = [
@@ -57,7 +58,7 @@ export default function Header({ events }: { events: LatestEventData[] }) {
     >
       <div className="flex flex-col md:items-center p-2 md:flex-row gap-2 md:gap-6">
         <div className="flex justify-between">
-          <Link href="/">
+          <Link href="/" aria-label="TedxRUET home">
             <Image
               src="/images/brand-logo-light.png"
               className="dark:hidden"
@@ -96,21 +97,21 @@ function Navigation({ events }: { events: LatestEventData[] }) {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Events</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-3 p-6 md:w-[450px] lg:w-[540px] lg:grid-cols-[.8fr_1fr]">
+            <ul className="grid gap-1 md:gap-3 p-3 md:p-6 w-[350px] md:w-[450px] lg:w-[540px] lg:grid-cols-[.8fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
-                  <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                  <Link
                     href="/events"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                   >
-                    <div className="mb-2 mt-4 text-lg font-medium">
+                    <div className="my-2 text-lg font-medium">
                       TEDxRUET Events
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                       Discover a World of Thought-Provoking Talks, Engrossing
                       Performances, and Collaborative Discussions.
                     </p>
-                  </a>
+                  </Link>
                 </NavigationMenuLink>
               </li>
               {events.map((ev) => (
@@ -160,21 +161,23 @@ function Navigation({ events }: { events: LatestEventData[] }) {
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, href, ...props }, ref) => {
+const ListItem = ({
+  children,
+  href,
+  title,
+}: {
+  children: React.ReactNode;
+  href: string;
+  title: string;
+}) => {
   return (
     <li>
       <NavigationMenuLink asChild>
         <Link
-          ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
           )}
           href={href!}
-          {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -184,43 +187,13 @@ const ListItem = React.forwardRef<
       </NavigationMenuLink>
     </li>
   );
-});
-ListItem.displayName = "ListItem";
+};
 
 const ThemeSwitch = () => {
-  const [theme, setTheme] = React.useState<"light" | "dark">("dark");
-
-  React.useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      return;
-    }
-    document.documentElement.classList.remove("dark");
-  }, [theme]);
-
-  React.useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as string | undefined;
-    if (savedTheme === "light") {
-      return setTheme("light");
-    }
-  }, []);
-
-  const handleThemeChange = () => {
-    if (theme === "light") {
-      setTheme("dark");
-      localStorage.removeItem("theme");
-      return;
-    }
-    setTheme("light");
-    localStorage.setItem("theme", "light");
-  };
+  const switchTheme = React.useContext(ThemeContext);
 
   return (
-    <Button
-      variant={"ghost"}
-      onClick={handleThemeChange}
-      aria-label="Swith theme"
-    >
+    <Button variant={"ghost"} onClick={switchTheme} aria-label="Swith theme">
       <MoonIcon className="dark:hidden" />
       <SunIcon className="hidden dark:inline" />
     </Button>
