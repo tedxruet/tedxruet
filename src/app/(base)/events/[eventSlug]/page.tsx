@@ -74,7 +74,7 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
             </Link>
           </CardFooter>
         </Card>
-        <Tabs defaultValue="gallery">
+        <Tabs defaultValue="description">
           <TabsList className="w-full justify-start bg-inherit">
             <TabsTrigger value="description" className="md:text-lg">
               Description
@@ -114,15 +114,30 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
           <TabsContent value="speakers">
             <section aria-label="Speakers" className="mt-8">
               <h2 className="text-4xl mb-8">Speakers</h2>
+
               <div className="flex overflow-auto md:flex-wrap md:justify-center lg:max-w-screen-lg mx-auto">
-                {event.speakers.map((speaker) => (
+                {event.speakers?.map((speaker) => (
                   <div
                     key={speaker.slug}
-                    className="p-1 md:p-2 md:w-1/4 min-w-[300px] md:min-w-0"
+                    className="p-1 md:p-2 sm:w-1/2 md:w-1/3 lg:w-1/4 max-w-xs w-full"
                   >
-                    <SpeakerCard speaker={speaker} />
+                    <SpeakerCard
+                      speaker={{
+                        slug: speaker.slug,
+                        designation: speaker.designation,
+                        name: speaker.name,
+                        photoUrl: urlFor(speaker.photo).height(450).url(),
+                      }}
+                    />
                   </div>
                 ))}
+                {event.speakers?.length ? null : (
+                  <div className="p-2 w-full rounded-md bg-muted">
+                    <p className="text-muted-foreground text-center">
+                      No speakers found
+                    </p>
+                  </div>
+                )}
               </div>
             </section>
           </TabsContent>
@@ -130,7 +145,7 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
             <section aria-label="Organizing Team" className="mt-8">
               <h2 className="text-4xl mb-8">Organizing Team</h2>
               <div className="flex flex-wrap">
-                {event.members.map((member) => (
+                {event.members?.map((member) => (
                   <div
                     key={member.slug}
                     className="p-1 lg:w-1/5 md:w-3/12 sm:w-4/12 w-6/12"
@@ -139,6 +154,13 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
                   </div>
                 ))}
               </div>
+              {event.members?.length ? null : (
+                <div className="p-2 w-full rounded-md bg-muted">
+                  <p className="text-muted-foreground text-center">
+                    No members found
+                  </p>
+                </div>
+              )}
             </section>
           </TabsContent>
           <TabsContent value="gallery">
@@ -146,21 +168,28 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
               <h2 className="text-4xl mb-8">Gallery</h2>
 
               <div className="flex flex-wrap">
-                {event.gallery.map((img, i) => (
+                {event.gallery?.map((img, i) => (
                   <div key={i} className="p-1 md:w-4/12">
                     <PhotoCard img={img} />
                   </div>
                 ))}
               </div>
+              {event.gallery?.length ? null : (
+                <div className="p-2 w-full rounded-md bg-muted">
+                  <p className="text-muted-foreground text-center">
+                    No photo found
+                  </p>
+                </div>
+              )}
             </section>
           </TabsContent>
         </Tabs>
         <section aria-label="Partners" className="mt-12">
           <h3 className="text-center text-lg font-bold mb-2">
-            Event Sponsored by:
+            {event.sponsors ? "Event Sponsored by:" : ""}
           </h3>
           <div className="flex flex-wrap justify-center mx-auto bg-muted dark:bg-muted-foreground rounded-md">
-            {event.sponsors.map((sponsor) => (
+            {event.sponsors?.map((sponsor) => (
               <div
                 key={sponsor.slug}
                 className="p-1 md:p-2 md:w-1/3 min-w-[240px] md:min-w-0"

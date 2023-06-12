@@ -44,6 +44,17 @@ export const getEvents = async (from = 0, to = 2) => {
   );
 };
 
+export const getEventsList = async () => {
+  return client.fetch<Array<Pick<LatestEventData, "title" | "slug">>>(
+    `
+      *[_type=='event'] | order(_createdAt desc) {
+        title,
+        'slug': @['slug'].current
+      }
+    `
+  );
+};
+
 export const getEvent = (slug = "") => {
   return client.fetch<FullEventData>(
     `
@@ -60,8 +71,8 @@ export const getEvent = (slug = "") => {
       'speakers': speakers[] -> {
           name, 
           designation,
-          'slug':slug.current,
-          'photoUrl':photo.asset->url
+          photo,
+          'slug':slug.current
         },
       'members': members[]{
           post, 

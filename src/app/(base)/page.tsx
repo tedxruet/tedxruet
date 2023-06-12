@@ -46,7 +46,7 @@ export default async function Home() {
       <section aria-label="Speakers" className="mt-12">
         <h2 className="text-center text-4xl mb-8">Meet The Speakers</h2>
         <div className="flex overflow-auto md:flex-wrap md:justify-center lg:max-w-screen-lg mx-auto">
-          {data.event.speakers.map((speaker) => (
+          {data.event.speakers?.map((speaker) => (
             <div
               key={speaker.slug}
               className="p-1 md:p-2 md:w-1/4 min-w-[300px] md:min-w-0"
@@ -78,7 +78,7 @@ export default async function Home() {
       <section aria-label="Partners" className="mt-12">
         <h2 className="text-center text-4xl mb-8">Our Partners</h2>
         <div className="flex overflow-auto md:flex-wrap md:justify-center mx-auto 2xl:max-w-screen-2xl bg-muted dark:bg-muted-foreground rounded-md">
-          {data.event.sponsors.map((sponsor) => (
+          {data.event.sponsors?.map((sponsor) => (
             <div
               key={sponsor.slug}
               className="p-1 md:p-2 md:w-1/4 xl:w-1/5 min-w-[240px] md:min-w-0"
@@ -103,7 +103,7 @@ export default async function Home() {
       <section aria-label="Organizing Team" className="mt-12">
         <h2 className="text-center text-4xl mb-8">Organizing Team</h2>
         <div className="flex overflow-auto md:flex-wrap mx-auto xl:max-w-screen-xl">
-          {data.event.members.map((member) => (
+          {data.event.members?.map((member) => (
             <div
               key={member.slug}
               className="p-1 md:w-2/12 lg:w-[14.28%] min-w-[150px] md:min-w-0"

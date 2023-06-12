@@ -21,9 +21,9 @@ const Events = async () => {
   return (
     <main className="container p-2 min-h-screen">
       <h1 className="text-4xl mt-12 mb-8">TEDxRUET Events</h1>
-      <div className="max-w-screen-lg">
+      <div className="max-w-screen-lg mx-auto flex flex-wrap gap-5">
         {events.map((ev) => (
-          <Link href={`/events/${ev.slug}`} key={ev.slug}>
+          <Link href={`/events/${ev.slug}`} key={ev.slug} className="w-full">
             <Card
               key={ev.slug}
               className="overflow-hidden hover:bg-secondary transition-colors duration-300"

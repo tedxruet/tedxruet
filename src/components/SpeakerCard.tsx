@@ -1,8 +1,6 @@
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -25,7 +23,7 @@ const SpeakerCard = ({
         <Image
           src={speaker.photoUrl}
           width={400}
-          height={900}
+          height={400}
           alt={speaker.name}
           className="h-72 w-full object-cover"
         />

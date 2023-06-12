@@ -12,14 +12,14 @@ export type LatestEventData = {
 export type LastEventData = {
   title: string;
   slug: string;
-  speakers: {
+  speakers?: {
     designation: string;
     name: string;
     slug: string;
     photoUrl: string;
   }[];
-  members: { name: string; slug: string; post: string; photoUrl: string }[];
-  sponsors: { name: string; slug: string; type: string; logoUrl: string }[];
+  members?: { name: string; slug: string; post: string; photoUrl: string }[];
+  sponsors?: { name: string; slug: string; type: string; logoUrl: string }[];
 };
 
 export type FullEventData = {
@@ -30,16 +30,16 @@ export type FullEventData = {
   time: string;
   venue: string;
   registrationLink: string | null;
-  gallery: unknown[];
+  gallery?: unknown[];
   content: TypedObject[];
-  speakers: {
+  speakers?: {
     designation: string;
     name: string;
     slug: string;
-    photoUrl: string;
+    photo: Image;
   }[];
-  members: { name: string; slug: string; post: string; photoUrl: string }[];
-  sponsors: { name: string; slug: string; type: string; logoUrl: string }[];
+  members?: { name: string; slug: string; post: string; photoUrl: string }[];
+  sponsors?: { name: string; slug: string; type: string; logoUrl: string }[];
 };
 
 export type SiteData = {
@@ -49,4 +49,26 @@ export type SiteData = {
   about: { ted: string; tedx: string; tedxruet: string };
   contact: { phone1: string; phone2?: string; email: string; address: string };
   social: { facebook?: string; linkedin?: string; email: string };
+};
+
+export type Speaker = {
+  designation: string;
+  name: string;
+  slug: string;
+  photo: Image;
+};
+
+export type Member = {
+  post: string;
+  name: string;
+  slug: string;
+  photo: Image;
+};
+
+type Image = {
+  _type: "image";
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
 };
