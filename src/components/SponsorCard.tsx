@@ -14,7 +14,7 @@ const SponsorCard = ({
 }) => {
   return (
     <Link href={`/partners/${sponsor.slug}`} aria-label={sponsor.name}>
-      <Card className="h-full overflow-hidden bg-transparent border-none">
+      <Card className="h-full overflow-hidden bg-transparent border-none shadow-none">
         <Image
           src={sponsor.logoUrl}
           width={350}

@@ -5,6 +5,7 @@ import SpeakerCard from "@/components/SpeakerCard";
 import SponsorCard from "@/components/SponsorCard";
 import HomeMemberCard from "@/components/HomeMemberCard";
 import { getHomepageData } from "@/lib/sanity/site";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
 export const revalidate = 600;
@@ -75,33 +76,44 @@ export default async function Home() {
         <h2 className="text-center text-4xl mb-8">About TEDxRUET</h2>
 
         <div className="max-w-screen-md mx-auto">
-          <p className="text-lg md:text-xl text-justify">
+          <p className="md:text-lg lg:text-xl md:text-justify">
             {data.about.tedxruet}
           </p>
         </div>
       </section>
-      <section aria-label="Partners" className="mt-12">
-        <h2 className="text-center text-4xl mb-8">Our Partners</h2>
-        <div className="flex overflow-auto md:flex-wrap md:justify-center mx-auto 2xl:max-w-screen-2xl bg-muted dark:bg-muted-foreground rounded-md">
-          {data.event.sponsors?.map((sponsor) => (
-            <div
-              key={sponsor.slug}
-              className="p-1 md:p-2 md:w-1/4 xl:w-1/5 min-w-[240px] md:min-w-0"
-            >
-              <SponsorCard sponsor={sponsor} />
-            </div>
-          ))}
-        </div>
-      </section>
+      {data.event.sponsors ? (
+        <section aria-label="Partners" className="mt-12">
+          <h2 className="text-center text-4xl mb-8">Our Partners</h2>
+          <div
+            className={cn(
+              "flex overflow-auto md:flex-wrap md:justify-center mx-auto 2xl:max-w-screen-2xl bg-muted dark:bg-muted-foreground rounded-md",
+              data.event.sponsors.length === 1 ? "justify-center" : ""
+            )}
+          >
+            {data.event.sponsors.map((sponsor) => (
+              <div
+                key={sponsor.slug}
+                className="p-1 md:p-2 md:w-1/4 xl:w-1/5 min-w-[240px] md:min-w-0"
+              >
+                <SponsorCard sponsor={sponsor} />
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
       <section aria-label="About TED and TEDx">
         <div className="grid grid-cols-1 md:grid-cols-2 mt-12 gap-10">
           <div>
             <h2 className="text-center text-4xl mb-8">What is TEDx?</h2>
-            <p className="text-lg md:text-xl text-justify">{data.about.tedx}</p>
+            <p className="md:text-lg lg:text-xl md:text-justify">
+              {data.about.tedx}
+            </p>
           </div>
           <div>
             <h2 className="text-center text-4xl mb-8">About TED</h2>
-            <p className="text-lg md:text-xl text-justify">{data.about.ted}</p>
+            <p className="md:text-lg lg:text-xl md:text-justify">
+              {data.about.ted}
+            </p>
           </div>
         </div>
       </section>
