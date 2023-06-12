@@ -1,13 +1,6 @@
 import { Card } from "@/components/ui/card";
-import { ExternalLinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "./ui/button";
 
 const SponsorCard = ({
   sponsor,
@@ -20,7 +13,7 @@ const SponsorCard = ({
   };
 }) => {
   return (
-    <Link href={`/sponsors/${sponsor.slug}`} aria-label={sponsor.name}>
+    <Link href={`/partners/${sponsor.slug}`} aria-label={sponsor.name}>
       <Card className="h-full overflow-hidden bg-transparent border-none">
         <Image
           src={sponsor.logoUrl}

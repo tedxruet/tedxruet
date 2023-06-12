@@ -65,6 +65,13 @@ export type Member = {
   photo: Image;
 };
 
+export type Partner = {
+  link: string;
+  type: string;
+  name: string;
+  slug: string;
+  logo: Image;
+};
 type Image = {
   _type: "image";
   asset: {

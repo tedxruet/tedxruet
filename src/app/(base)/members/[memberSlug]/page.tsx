@@ -24,12 +24,12 @@ export async function generateMetadata({
   const member = await getMember(memberSlug);
 
   return {
-    title: `${member.name}, Member`,
-    description: member.bio ?? "TEDxRUET member",
-    openGraph: {
-      images: [urlFor(member.photo).width(600).url()],
-      description: member.bio ?? "TEDxRUET member",
-    },
+    title: `${member.name}`,
+    description: member.events
+      .filter((ev) => ev.post)
+      .map((ev) => `${ev.post} - ${ev.title}`)
+      .join(", "),
+    openGraph: { images: [urlFor(member.photo).width(500).url()] },
   };
 }
 

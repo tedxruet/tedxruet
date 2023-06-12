@@ -30,17 +30,17 @@ const TeamPage = async ({ searchParams }: Props) => {
 
   return (
     <div className="flex flex-wrap mx-auto">
-      {eventWithTeam.members?.map((speaker) => (
+      {eventWithTeam.members?.map((member) => (
         <div
-          key={speaker.slug}
+          key={member.slug}
           className="p-1 md:p-2 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 max-w-xs"
         >
           <MemberCard
             member={{
-              slug: speaker.slug,
-              post: speaker.post,
-              name: speaker.name,
-              photoUrl: urlFor(speaker.photo).url(),
+              slug: member.slug,
+              post: member.post,
+              name: member.name,
+              photoUrl: urlFor(member.photo).url(),
             }}
           />
         </div>
