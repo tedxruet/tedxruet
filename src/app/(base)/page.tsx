@@ -5,8 +5,13 @@ import SpeakerCard from "@/components/SpeakerCard";
 import SponsorCard from "@/components/SponsorCard";
 import HomeMemberCard from "@/components/HomeMemberCard";
 import { getHomepageData } from "@/lib/sanity/site";
+import type { Metadata } from "next";
 
-export const revalidate = 3600;
+export const revalidate = 600;
+
+export const metadata: Metadata = {
+  title: "Home",
+};
 
 export default async function Home() {
   const data = await getHomepageData();
