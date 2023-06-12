@@ -1,20 +1,23 @@
+import Image from "next/image";
 import Link from "next/link";
+import dayjs from "dayjs";
+import { CalendarIcon, MapPinIcon } from "lucide-react";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { getEvents } from "@/lib/sanity/events";
-import Image from "next/image";
-import { CalendarIcon, LinkIcon, MapPinIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { urlFor } from "@/lib/sanity";
-import dayjs from "dayjs";
+import type { Metadata } from "next";
 
-export const revalidate = 3600;
+export const revalidate = 600;
+
+export const metadata: Metadata = {
+  title: "Events",
+  description: "TEDx Rajshahi University of Engineering & Technology events.",
+};
 
 const Events = async () => {
   const events = await getEvents();

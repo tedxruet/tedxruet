@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import SpeakerCard from "@/components/SpeakerCard";
-import MemberCard from "@/components/MemberCard";
 import SponsorCard from "@/components/SponsorCard";
+import HomeMemberCard from "@/components/HomeMemberCard";
 import { getHomepageData } from "@/lib/sanity/site";
 
 export const revalidate = 3600;
@@ -27,13 +27,13 @@ export default async function Home() {
             priority
           />
           <div className="absolute inset-0 bg-background opacity-10"></div>
-          <div className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
             <h1 className="text-5xl lg:text-6xl text-center mb-8 dark:font-light drop-shadow-text">
               {data.tagline}
             </h1>
             <Link href={`/events/${data.event.slug}`}>
               <Button
-                className="uppercase mx-auto block drop-shadow-text"
+                className="uppercase drop-shadow-text"
                 variant={"default"}
                 size={"lg"}
               >
@@ -108,7 +108,7 @@ export default async function Home() {
               key={member.slug}
               className="p-1 md:w-2/12 lg:w-[14.28%] min-w-[150px] md:min-w-0"
             >
-              <MemberCard member={member} />
+              <HomeMemberCard member={member} />
             </div>
           ))}
         </div>

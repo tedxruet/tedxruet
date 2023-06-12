@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -7,11 +8,28 @@ import {
 } from "@/components/ui/card";
 import { urlFor } from "@/lib/sanity";
 import { getSpeaker } from "@/lib/sanity/speakers";
-import Image from "next/image";
+import type { Metadata } from "next";
 
-type Prop = { params: { speakerSlug: string } };
+type Props = { params: { speakerSlug: string } };
 
-const Speaker = async ({ params: { speakerSlug } }: Prop) => {
+export const revalidate = 86400;
+
+export async function generateMetadata({
+  params: { speakerSlug },
+}: Props): Promise<Metadata> {
+  const speaker = await getSpeaker(speakerSlug);
+
+  return {
+    title: `${speaker.name}, Speaker`,
+    description: speaker.designation,
+    openGraph: {
+      images: [urlFor(speaker.photo).width(600).url()],
+      description: `${speaker.name}, Speaker`,
+    },
+  };
+}
+
+const Speaker = async ({ params: { speakerSlug } }: Props) => {
   const speaker = await getSpeaker(speakerSlug);
 
   return (
@@ -30,7 +48,7 @@ const Speaker = async ({ params: { speakerSlug } }: Prop) => {
           </div>
           <div className="flex-1">
             <CardHeader>
-              <CardTitle>{speaker.name}</CardTitle>
+              <CardTitle className="text-3xl">{speaker.name}</CardTitle>
               <CardDescription>{speaker.designation}</CardDescription>
             </CardHeader>
             <CardContent>{speaker.bio}</CardContent>

@@ -1,13 +1,11 @@
-import { Card } from "@/components/ui/card";
-import { ExternalLinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "./ui/button";
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const MemberCard = ({
   member,
@@ -20,35 +18,23 @@ const MemberCard = ({
   };
 }) => {
   return (
-    <Popover>
-      <PopoverTrigger className="w-full">
-        <Card className="h-full overflow-hidden hover:shadow-md hover:bg-primary-foreground transition duration-300">
+    <Link href={`/members/${member.slug}`}>
+      <Card className="h-full overflow-hidden hover:shadow-md hover:bg-primary-foreground transition duration-300">
+        <div className="aspect-square relative">
           <Image
             src={member.photoUrl}
-            width={350}
-            height={600}
             alt={member.name}
-            className="h-64 w-full object-cover"
+            fill
+            className="object-cover"
             loading="lazy"
           />
-        </Card>
-      </PopoverTrigger>
-      <PopoverContent>
-        <div className="flex items-start">
-          <div className="flex-1">
-            <h5 className="line-clamp-2">{member.name}</h5>
-            <p className="text-sm line-clamp-2">{member.post}</p>
-          </div>
-          <div>
-            <Link href={`/members/${member.slug}`}>
-              <Button variant={"ghost"} size={"sm"} className="mt-2">
-                <ExternalLinkIcon />
-              </Button>
-            </Link>
-          </div>
         </div>
-      </PopoverContent>
-    </Popover>
+        <CardHeader>
+          <CardTitle>{member.name}</CardTitle>
+          <CardDescription>{member.post}</CardDescription>
+        </CardHeader>
+      </Card>
+    </Link>
   );
 };
 

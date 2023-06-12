@@ -1,11 +1,12 @@
 import { client } from "@/lib/sanity";
-import type { Member } from "../types";
+import type { Image, Member } from "../types";
 
 export const getEventTeam = async (event?: string) => {
   const query = event
     ? `
     *[_type=='event' && slug.current=='${event}'][0] {
         title,
+        cover,
         'slug': @['slug'].current,
         'members':members[]{
             post, 
@@ -18,6 +19,7 @@ export const getEventTeam = async (event?: string) => {
     : `
     *[_type=='event'] | order(_createdAt desc)[0] {
         title,
+        cover,
         'slug': @['slug'].current,
         'members':members[]{
             post, 
@@ -32,5 +34,30 @@ export const getEventTeam = async (event?: string) => {
     members: Member[];
     title: string;
     slug: string;
+    cover: Image;
   }>(query);
+};
+
+type MemberResponse = Omit<Member, "post"> & {
+  bio?: string;
+  events: Array<{ title: string; post: string | null }>;
+  social: {
+    facebook?: string;
+    linkedin?: string;
+  };
+};
+
+export const getMember = async (slug: string) => {
+  return client.fetch<MemberResponse>(
+    `
+    *[_type=='member' && slug.current==$slug][0] {
+      ...,
+      'events': *[_type=='event'] | order(_createdAt desc) {
+        title,
+        'post':members[member->slug.current==$slug][0].post
+      }
+    }
+  `,
+    { slug }
+  );
 };

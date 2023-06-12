@@ -1,12 +1,28 @@
 import SpeakerCard from "@/components/SpeakerCard";
 import { urlFor } from "@/lib/sanity";
-import { getEventsList } from "@/lib/sanity/events";
 import { getEventSpeakers } from "@/lib/sanity/speakers";
-import EventSelect from "./EventSelect";
+import type { Metadata } from "next";
+
+type Props = { searchParams: { [key: string]: string | string[] | undefined } };
 
 export const revalidate = 0;
 
-type Props = { searchParams: { [key: string]: string | string[] | undefined } };
+export async function generateMetadata({
+  searchParams,
+}: Props): Promise<Metadata> {
+  const eventWithSpeakers = await getEventSpeakers(
+    typeof searchParams.event === "string" ? searchParams.event : undefined
+  );
+
+  return {
+    title: `Team - ${eventWithSpeakers.title}`,
+    description: `Speakers of ${eventWithSpeakers.title} Event.`,
+    openGraph: {
+      images: [urlFor(eventWithSpeakers.cover).width(600).url()],
+      description: `Speakers of ${eventWithSpeakers.title} Event.`,
+    },
+  };
+}
 
 const Speakers = async ({ searchParams }: Props) => {
   const eventWithSpeakers = await getEventSpeakers(

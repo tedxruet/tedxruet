@@ -17,6 +17,7 @@ import { getEvent } from "@/lib/sanity/events";
 import type { Metadata } from "next";
 import { urlFor } from "@/lib/sanity";
 import SponsorCard from "@/components/SponsorCard";
+import MemberCard from "@/components/MemberCard";
 import SpeakerCard from "@/components/SpeakerCard";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
@@ -205,37 +206,6 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
 };
 
 export default EventPage;
-
-const MemberCard = ({
-  member,
-}: {
-  member: {
-    slug: string;
-    name: string;
-    post: string;
-    photoUrl: string;
-  };
-}) => {
-  return (
-    <Link href={`/members/${member.slug}`}>
-      <Card className="h-full overflow-hidden hover:shadow-md hover:bg-primary-foreground transition duration-300">
-        <div className="aspect-square relative">
-          <Image
-            src={member.photoUrl}
-            alt={member.name}
-            fill
-            className="object-cover"
-            loading="lazy"
-          />
-        </div>
-        <CardHeader>
-          <CardTitle>{member.name}</CardTitle>
-          <CardDescription>{member.post}</CardDescription>
-        </CardHeader>
-      </Card>
-    </Link>
-  );
-};
 
 const PhotoCard = ({ img }: { img: unknown }) => (
   <Dialog>

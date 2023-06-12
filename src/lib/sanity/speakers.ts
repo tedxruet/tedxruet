@@ -1,11 +1,12 @@
 import { client } from "@/lib/sanity";
-import { Member, Speaker } from "../types";
+import { Image, Member, Speaker } from "../types";
 
 export const getEventSpeakers = async (event?: string) => {
   const query = event
     ? `
     *[_type=='event' && slug.current=='${event}'][0] {
         title,
+        cover,
         'slug': @['slug'].current,
         'speakers':speakers[]->{name, photo, designation, 'slug': slug.current}
     }   
@@ -13,6 +14,7 @@ export const getEventSpeakers = async (event?: string) => {
     : `
     *[_type=='event'] | order(_createdAt desc)[0] {
         title,
+        cover,
         'slug': @['slug'].current,
         'speakers':speakers[]->{name, photo, designation, 'slug': slug.current}
     }
@@ -22,6 +24,7 @@ export const getEventSpeakers = async (event?: string) => {
     speakers: Speaker[];
     title: string;
     slug: string;
+    cover: Image;
   }>(query);
 };
 

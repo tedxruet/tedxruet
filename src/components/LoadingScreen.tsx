@@ -1,16 +1,18 @@
 import { cn } from "@/lib/utils";
 import { LoaderIcon } from "lucide-react";
 
-const LoadingScreen = (
-  { fullscreen }: { fullscreen?: boolean } = { fullscreen: true }
-) => {
+const LoadingScreen = ({
+  disableFullscreen,
+}: {
+  disableFullscreen?: boolean;
+}) => {
   return (
     <div
       className={cn(
         "grid place-items-center",
-        fullscreen
-          ? "md:min-h-[calc(100vh-56px)] min-h-[calc(100vh-100px)]"
-          : "p-4"
+        disableFullscreen
+          ? "p-4"
+          : "md:min-h-[calc(100vh-56px)] min-h-[calc(100vh-100px)]"
       )}
     >
       <LoaderIcon size={24} className="animate-spin" />

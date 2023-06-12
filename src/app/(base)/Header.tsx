@@ -33,7 +33,7 @@ const community: { title: string; href: string; description: string }[] = [
   },
   {
     title: "Organizing Team",
-    href: "/team",
+    href: "/members",
     description:
       "Meet the TEDxRUET organizing team - Driven, Inspiring, and Transformative!",
   },
