@@ -14,7 +14,7 @@ const SpeakersLayout = async ({ children }: Props) => {
 
   return (
     <main className="container xl:max-w-screen-xl p-2 min-h-screen">
-      <div className="flex flex-wrap mt-12 mb-8 justify-between gap-4">
+      <div className="flex flex-wrap mt-4 lg:mt-12 mb-8 justify-between gap-4">
         <h1 className="text-4xl">Speakers</h1>
         <EventSelect events={eventsList} />
       </div>

@@ -30,7 +30,7 @@ const Speakers = async ({ searchParams }: Props) => {
   );
 
   return (
-    <div className="flex flex-wrap mx-auto">
+    <div className="flex flex-wrap mx-auto justify-center sm:justify-start">
       {eventWithSpeakers.speakers?.map((speaker) => (
         <div
           key={speaker.slug}

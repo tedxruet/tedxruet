@@ -116,7 +116,7 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
             <section aria-label="Speakers" className="mt-8">
               <h2 className="text-4xl mb-8">Speakers</h2>
 
-              <div className="flex overflow-auto md:flex-wrap md:justify-center lg:max-w-screen-lg mx-auto">
+              <div className="flex flex-wrap justify-center lg:max-w-screen-lg mx-auto">
                 {event.speakers?.map((speaker) => (
                   <div
                     key={speaker.slug}

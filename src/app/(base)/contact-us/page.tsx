@@ -21,7 +21,7 @@ const ContactUs = async () => {
   const data = await getContactData();
   return (
     <main className="container p-2 min-h-screen">
-      <h1 className="text-4xl mt-12 mb-8">Contact Us</h1>
+      <h1 className="text-4xl mt-4 lg:mt-12 mb-8">Contact Us</h1>
       <div className="container mx-auto lg:max-w-screen-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>

@@ -97,7 +97,7 @@ function Navigation({ events }: { events: LatestEventData[] }) {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Events</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-1 md:gap-3 p-3 md:p-6 w-[350px] md:w-[450px] lg:w-[540px] lg:grid-cols-[.8fr_1fr]">
+            <ul className="grid gap-1 md:gap-3 p-3 md:p-6 md:w-[450px] lg:w-[540px] lg:grid-cols-[.8fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <Link

@@ -32,7 +32,9 @@ const Events = async ({
 
   return (
     <main className="container p-2 min-h-screen">
-      <h1 className="text-4xl mt-12 mb-8 text-center">TEDxRUET Events</h1>
+      <h1 className="text-4xl mt-4 lg:mt-12 mb-8 text-center">
+        TEDxRUET Events
+      </h1>
       <div className="lg:max-w-screen-lg mx-auto">
         <div className="mx-auto flex flex-wrap gap-5">
           {events.map((ev) => (
