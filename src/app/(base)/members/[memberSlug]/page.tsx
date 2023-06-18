@@ -17,7 +17,6 @@ import type { Metadata } from "next";
 
 type Props = { params: { memberSlug: string } };
 
-export const revalidate = 86400;
 export async function generateMetadata({
   params: { memberSlug },
 }: Props): Promise<Metadata> {
@@ -66,32 +65,34 @@ const Member = async ({ params: { memberSlug } }: Props) => {
             </CardHeader>
 
             {member.bio ? <CardContent>{member.bio}</CardContent> : null}
-            <CardFooter>
-              Find me on-&nbsp;
-              {member.social.facebook ? (
-                <Link href={member.social.facebook} target="_blank">
-                  <Button
-                    variant={"secondary"}
-                    size="sm"
-                    aria-label="facebook link"
-                  >
-                    <FacebookIcon size={20} />
-                  </Button>
-                </Link>
-              ) : null}
-              &nbsp;
-              {member.social.linkedin ? (
-                <Link href={member.social.linkedin} target="_blank">
-                  <Button
-                    variant={"secondary"}
-                    size="sm"
-                    aria-label="linkedin link"
-                  >
-                    <LinkedinIcon size={20} />
-                  </Button>
-                </Link>
-              ) : null}
-            </CardFooter>
+            {member.social ? (
+              <CardFooter>
+                Find me on-&nbsp;
+                {member.social.facebook ? (
+                  <Link href={member.social.facebook} target="_blank">
+                    <Button
+                      variant={"secondary"}
+                      size="sm"
+                      aria-label="facebook link"
+                    >
+                      <FacebookIcon size={20} />
+                    </Button>
+                  </Link>
+                ) : null}
+                &nbsp;
+                {member.social.linkedin ? (
+                  <Link href={member.social.linkedin} target="_blank">
+                    <Button
+                      variant={"secondary"}
+                      size="sm"
+                      aria-label="linkedin link"
+                    >
+                      <LinkedinIcon size={20} />
+                    </Button>
+                  </Link>
+                ) : null}
+              </CardFooter>
+            ) : null}
           </div>
         </div>
       </Card>
