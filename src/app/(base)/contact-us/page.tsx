@@ -12,7 +12,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Contact TEDxRUET team.",
+  description: "Get in touch with TEDxRUET",
+  openGraph: {
+    description: "Get in touch with TEDxRUET",
+  },
 };
 
 const pageSize = 5;

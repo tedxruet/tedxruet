@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_URL),
   openGraph: {
     images: ["/images/og.jpg"],
+    description:
+      "TEDx is an international community that organizes TED-style events anywhere and everywhere -- celebrating locally-driven ideas and elevating them to a global stage.",
   },
 };
 

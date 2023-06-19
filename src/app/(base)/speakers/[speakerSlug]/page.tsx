@@ -12,8 +12,6 @@ import type { Metadata } from "next";
 
 type Props = { params: { speakerSlug: string } };
 
-export const revalidate = 86400;
-
 export async function generateMetadata({
   params: { speakerSlug },
 }: Props): Promise<Metadata> {
@@ -37,7 +35,7 @@ const Speaker = async ({ params: { speakerSlug } }: Props) => {
       <h1 className="text-4xl mt-4 lg:mt-12 mb-8">{}</h1>
       <Card className="border-none shadow-none">
         <div className="flex flex-col sm:flex-row">
-          <div className="aspect-square sm:w-64 md:w-80 lg:w-96 max-w-sm mx-auto sm:max-w-none sm:mx-0">
+          <div className="aspect-square sm:w-64 md:w-80 lg:w-96 max-w-xs w-full mx-auto sm:max-w-none sm:mx-0">
             <Image
               src={urlFor(speaker.photo).url()}
               alt={speaker.name}

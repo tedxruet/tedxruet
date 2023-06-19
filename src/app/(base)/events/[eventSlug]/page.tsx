@@ -20,10 +20,11 @@ import SponsorCard from "@/components/SponsorCard";
 import MemberCard from "@/components/MemberCard";
 import SpeakerCard from "@/components/SpeakerCard";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import AnnouncingSoonCard from "@/components/AnnouncingSoonCard";
 
 type Props = { params: { eventSlug: string } };
 
-export const revalidate = 300;
+export const revalidate = 86400;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const event = await getEvent(params.eventSlug);
 
@@ -132,13 +133,7 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
                     />
                   </div>
                 ))}
-                {event.speakers?.length ? null : (
-                  <div className="p-2 w-full rounded-md bg-muted">
-                    <p className="text-muted-foreground text-center">
-                      No speakers found
-                    </p>
-                  </div>
-                )}
+                {event.speakers?.length ? null : <AnnouncingSoonCard />}
               </div>
             </section>
           </TabsContent>
@@ -155,13 +150,7 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
                   </div>
                 ))}
               </div>
-              {event.members?.length ? null : (
-                <div className="p-2 w-full rounded-md bg-muted">
-                  <p className="text-muted-foreground text-center">
-                    No members found
-                  </p>
-                </div>
-              )}
+              {event.members?.length ? null : <AnnouncingSoonCard />}
             </section>
           </TabsContent>
           <TabsContent value="gallery">
@@ -178,7 +167,7 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
               {event.gallery?.length ? null : (
                 <div className="p-2 w-full rounded-md bg-muted">
                   <p className="text-muted-foreground text-center">
-                    No photo found
+                    Not uploaded yet.
                   </p>
                 </div>
               )}

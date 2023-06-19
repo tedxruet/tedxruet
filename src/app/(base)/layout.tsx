@@ -5,8 +5,6 @@ import { Suspense } from "react";
 import LoadingScreen from "./loading";
 import { getContactData } from "@/lib/sanity/site";
 
-export const revalidate = 86400;
-
 export default async function BaseLayout({
   children,
 }: {

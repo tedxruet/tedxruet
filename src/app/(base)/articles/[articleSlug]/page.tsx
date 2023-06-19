@@ -15,14 +15,17 @@ import { urlFor } from "@/lib/sanity";
 
 type Props = { params: { articleSlug: string } };
 
-export const revalidate = 600;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = await getArticle(params.articleSlug);
 
   return {
     title: article.title,
     description: article.preamble,
-    openGraph: { images: [urlFor(article.cover).width(600).url()] },
+    openGraph: {
+      images: [urlFor(article.cover).width(600).url()],
+      description: article.preamble,
+    },
   };
 }
 
