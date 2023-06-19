@@ -67,9 +67,7 @@ const Member = async ({ params: { memberSlug } }: Props) => {
                 ))}
             </CardHeader>
 
-            {member.bio ? (
-              <CardContent className="whitespace-pre">{member.bio}</CardContent>
-            ) : null}
+            {member.bio ? <CardContent>{member.bio}</CardContent> : null}
             {member.social ? (
               <CardFooter>
                 Find me on-&nbsp;
