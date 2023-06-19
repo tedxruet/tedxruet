@@ -18,6 +18,9 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: "Events",
   description: "TEDx Rajshahi University of Engineering & Technology events.",
+  openGraph: {
+    description: "TEDx Rajshahi University of Engineering & Technology events.",
+  },
 };
 
 const pageSize = 5;

@@ -21,14 +21,18 @@ export async function generateMetadata({
   params: { memberSlug },
 }: Props): Promise<Metadata> {
   const member = await getMember(memberSlug);
+  const post = member.events
+    .filter((ev) => ev.post)
+    .map((ev) => `${ev.post} - ${ev.title}`)
+    .join(", ");
 
   return {
     title: `${member.name}`,
-    description: member.events
-      .filter((ev) => ev.post)
-      .map((ev) => `${ev.post} - ${ev.title}`)
-      .join(", "),
-    openGraph: { images: [urlFor(member.photo).width(500).url()] },
+    description: post,
+    openGraph: {
+      images: [urlFor(member.photo).width(500).url()],
+      description: post,
+    },
   };
 }
 
@@ -64,7 +68,9 @@ const Member = async ({ params: { memberSlug } }: Props) => {
                 ))}
             </CardHeader>
 
-            {member.bio ? <CardContent>{member.bio}</CardContent> : null}
+            {member.bio ? (
+              <CardContent className="whitespace-pre">{member.bio}</CardContent>
+            ) : null}
             {member.social ? (
               <CardFooter>
                 Find me on-&nbsp;

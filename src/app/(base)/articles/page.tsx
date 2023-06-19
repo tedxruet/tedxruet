@@ -21,6 +21,9 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: "Blog",
   description: "TEDx Rajshahi University of Engineering & Technology blog.",
+  openGraph: {
+    description: "TEDx Rajshahi University of Engineering & Technology blog.",
+  },
 };
 
 const pageSize = 5;
