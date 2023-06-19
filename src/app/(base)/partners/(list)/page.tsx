@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { urlFor } from "@/lib/sanity";
 import { getEventPartners } from "@/lib/sanity/partners";
 import type { Metadata } from "next";
+import AnnouncingSoonCard from "@/components/AnnouncingSoonCard";
 
 export const revalidate = 0;
 type Props = { searchParams: { [key: string]: string | string[] | undefined } };
@@ -47,11 +48,7 @@ const PartnersPage = async ({ searchParams }: Props) => {
           />
         </div>
       ))}
-      {eventWithPartners.partners?.length ? null : (
-        <div className="p-4 mt-6 w-full rounded-md bg-muted">
-          <p className="text-muted-foreground text-center">No partners found</p>
-        </div>
-      )}
+      {eventWithPartners.partners?.length ? null : <AnnouncingSoonCard />}
     </div>
   );
 };

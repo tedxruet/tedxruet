@@ -1,3 +1,4 @@
+import AnnouncingSoonCard from "@/components/AnnouncingSoonCard";
 import MemberCard from "@/components/MemberCard";
 import { urlFor } from "@/lib/sanity";
 import { getEventTeam } from "@/lib/sanity/members";
@@ -45,11 +46,7 @@ const TeamPage = async ({ searchParams }: Props) => {
           />
         </div>
       ))}
-      {eventWithTeam.members?.length ? null : (
-        <div className="p-4 mt-6 w-full rounded-md bg-muted">
-          <p className="text-muted-foreground text-center">No members found</p>
-        </div>
-      )}
+      {eventWithTeam.members?.length ? null : <AnnouncingSoonCard />}
     </div>
   );
 };

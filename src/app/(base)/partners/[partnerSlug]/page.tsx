@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { FacebookIcon, LinkIcon, LinkedinIcon } from "lucide-react";
+import { LinkIcon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -16,7 +16,6 @@ import { getPartner } from "@/lib/sanity/partners";
 import type { Metadata } from "next";
 
 type Props = { params: { partnerSlug: string } };
-
 
 export async function generateMetadata({
   params: { partnerSlug },

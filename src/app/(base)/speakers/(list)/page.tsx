@@ -1,3 +1,4 @@
+import AnnouncingSoonCard from "@/components/AnnouncingSoonCard";
 import SpeakerCard from "@/components/SpeakerCard";
 import { urlFor } from "@/lib/sanity";
 import { getEventSpeakers } from "@/lib/sanity/speakers";
@@ -46,11 +47,7 @@ const Speakers = async ({ searchParams }: Props) => {
           />
         </div>
       ))}
-      {eventWithSpeakers.speakers?.length ? null : (
-        <div className="p-4 mt-6 w-full rounded-md bg-muted">
-          <p className="text-muted-foreground text-center">No speakers found</p>
-        </div>
-      )}
+      {eventWithSpeakers.speakers?.length ? null : <AnnouncingSoonCard />}
     </div>
   );
 };
