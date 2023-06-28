@@ -56,9 +56,12 @@ export type FullEventData = {
 };
 
 export type SiteData = {
-  tagline: string;
-  bannerUrl: string;
-  event: LastEventData;
+  title: string;
+  subtitle: string;
+  event: Pick<LastEventData, "slug" | "members">;
+  speakers: Speaker[];
+  partners: Partner[];
+  banners: Image[];
   about: { ted: string; tedx: string; tedxruet: string };
   contact: { phone1: string; phone2?: string; email: string; address: string };
   social: { facebook?: string; linkedin?: string; email: string };

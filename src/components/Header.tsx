@@ -40,22 +40,8 @@ const community: { title: string; href: string; description: string }[] = [
 ];
 
 export default function Header({ events }: { events: LatestEventData[] }) {
-  const [scrolled, setScrolled] = React.useState(false);
-
-  React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY >= 5 ? true : false);
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 transition duration-300 z-10 bg-background",
-        scrolled ? "shadow-md bg-secondary" : ""
-      )}
-    >
+    <header className={cn("sticky top-0 z-10 bg-background border-b")}>
       <div className="flex flex-col md:items-center p-2 md:flex-row gap-2 md:gap-6">
         <div className="flex justify-between">
           <Link href="/" aria-label="TedxRUET home">

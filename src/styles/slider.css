@@ -1,0 +1,7 @@
+.swiper-pagination-bullet {
+  @apply w-8 h-1 bg-accent-foreground rounded-none opacity-100;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-accent;
+}
