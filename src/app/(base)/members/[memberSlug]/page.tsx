@@ -44,6 +44,7 @@ const Member = async ({ params: { memberSlug } }: Props) => {
 
   return (
     <main className="container xl:max-w-screen-xl p-2 min-h-screen">
+      <div className="mt-4 lg:mt-8"></div>
       <Card className="border-none shadow-none">
         <div className="flex flex-col sm:flex-row">
           <div className="aspect-square sm:w-64 md:w-80 lg:w-96 max-w-xs mx-auto w-full sm:max-w-none sm:mx-0">
@@ -58,6 +59,13 @@ const Member = async ({ params: { memberSlug } }: Props) => {
           <div className="flex-1">
             <CardHeader>
               <CardTitle className="text-3xl">{member.name}</CardTitle>
+              {member.events
+                .filter((ev) => ev.mentor)
+                .map((ev) => (
+                  <CardDescription key={ev.title}>
+                    Mentor - {ev.title}
+                  </CardDescription>
+                ))}
               {member.events
                 .filter((ev) => ev.post)
                 .map((ev) => (

@@ -80,6 +80,11 @@ export const getEvent = (slug = "") => {
           'name': @.member->name, 
           'photoUrl':@.member->photo.asset->url
         },
+        'mentors':mentors[]->{
+          'slug': slug.current,
+          name, 
+          'photoUrl': photo.asset->url
+        },
       'sponsors': sponsors[]{
           type, 
           'slug': @.partner->slug.current, 

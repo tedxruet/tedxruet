@@ -52,6 +52,7 @@ export type FullEventData = {
     photo: Image;
   }[];
   members?: { name: string; slug: string; post: string; photoUrl: string }[];
+  mentors?: { name: string; slug: string; photoUrl: string }[];
   sponsors?: { name: string; slug: string; type: string; logoUrl: string }[];
 };
 

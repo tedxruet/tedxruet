@@ -37,6 +37,11 @@ const community: { title: string; href: string; description: string }[] = [
     description:
       "Meet the TEDxRUET organizing team - Driven, Inspiring, and Transformative!",
   },
+  {
+    title: "Mentors",
+    href: "/mentors",
+    description: "Experts and Visionaries Guiding the TEDxRUET Experience",
+  },
 ];
 
 export default function Header({ events }: { events: LatestEventData[] }) {

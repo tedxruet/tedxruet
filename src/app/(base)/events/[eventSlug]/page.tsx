@@ -84,6 +84,9 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
             <TabsTrigger value="speakers" className="md:text-lg">
               Speakers
             </TabsTrigger>
+            <TabsTrigger value="mentors" className="md:text-lg">
+              Mentors
+            </TabsTrigger>
             <TabsTrigger value="team" className="md:text-lg">
               Team
             </TabsTrigger>
@@ -135,6 +138,22 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
                 ))}
                 {event.speakers?.length ? null : <AnnouncingSoonCard />}
               </div>
+            </section>
+          </TabsContent>
+          <TabsContent value="mentors">
+            <section aria-label="Mentors" className="mt-8">
+              <h2 className="text-4xl mb-8">Mentors</h2>
+              <div className="flex flex-wrap">
+                {event.mentors?.map((member) => (
+                  <div
+                    key={member.slug}
+                    className="p-1 md:w-3/12 sm:w-6/12 w-full"
+                  >
+                    <MemberCard member={{ ...member, post: "Mentor" }} />
+                  </div>
+                ))}
+              </div>
+              {event.members?.length ? null : <AnnouncingSoonCard />}
             </section>
           </TabsContent>
           <TabsContent value="team">

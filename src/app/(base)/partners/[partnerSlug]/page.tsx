@@ -40,7 +40,7 @@ const Member = async ({ params: { partnerSlug } }: Props) => {
 
   return (
     <main className="container xl:max-w-screen-xl p-2 min-h-screen">
-      <h1 className="text-4xl mt-4 lg:mt-12 mb-8">{}</h1>
+      <div className="mt-4 lg:mt-8"></div>
       <Card className="border-none shadow-none">
         <div className="flex flex-col sm:flex-row">
           <div className="w-full sm:w-64 md:w-80 lg:w-96 max-w-sm mx-auto sm:max-w-none sm:mx-0">

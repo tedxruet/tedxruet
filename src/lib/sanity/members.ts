@@ -31,7 +31,41 @@ export const getEventTeam = async (event?: string) => {
     `;
 
   return await client.fetch<{
-    members: Member[];
+    members?: Member[];
+    title: string;
+    slug: string;
+    cover: Image;
+  }>(query);
+};
+export const getEventMentors = async (event?: string) => {
+  const query = event
+    ? `
+    *[_type=='event' && slug.current=='${event}'][0] {
+      title,
+      cover,
+      'slug': @['slug'].current,
+      'mentors':mentors[]->{
+        'slug': slug.current,
+        name, 
+        photo
+      }
+    }   
+    `
+    : `
+    *[_type=='event'] | order(_createdAt desc)[0] {
+      title,
+      cover,
+      'slug': @['slug'].current,
+      'mentors':mentors[]->{
+        'slug': slug.current,
+        name, 
+        photo
+      }
+    }
+    `;
+
+  return await client.fetch<{
+    mentors: Member[];
     title: string;
     slug: string;
     cover: Image;
@@ -40,7 +74,7 @@ export const getEventTeam = async (event?: string) => {
 
 type MemberResponse = Omit<Member, "post"> & {
   bio?: string;
-  events: Array<{ title: string; post: string | null }>;
+  events: Array<{ title: string; post: string | null; mentor: unknown }>;
   social: {
     facebook?: string;
     linkedin?: string;
@@ -49,15 +83,14 @@ type MemberResponse = Omit<Member, "post"> & {
 
 export const getMember = async (slug: string) => {
   return client.fetch<MemberResponse>(
-    `
-    *[_type=='member' && slug.current==$slug][0] {
+    `*[_type=='member' && slug.current==$slug][0] {
       ...,
       'events': *[_type=='event'] | order(_createdAt desc) {
         title,
-        'post':members[member->slug.current==$slug][0].post
+        'post':members[member->slug.current==$slug][0].post,
+        'mentor':mentors[@->slug.current==$slug][0]
       }
-    }
-  `,
+    }`,
     { slug }
   );
 };
