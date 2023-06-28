@@ -40,3 +40,13 @@ export const getContactData = () => {
         }`
   );
 };
+
+export const getSitemapData = () => {
+  return client.fetch<{ slug: string; _updatedAt: string; _type: string }[]>(
+    `*[slug != none] {
+      'slug': slug.current,
+      _updatedAt,
+      _type
+    }`
+  );
+};
