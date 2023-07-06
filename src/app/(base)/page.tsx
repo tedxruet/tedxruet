@@ -12,7 +12,7 @@ import HeroSection from "@/components/Hero";
 import { urlFor } from "@/lib/sanity";
 
 export const metadata: Metadata = {
-  title: "Home | TEDxRUET",
+  title: "Home",
 };
 
 export default async function Home() {

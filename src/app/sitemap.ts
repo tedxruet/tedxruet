@@ -9,31 +9,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     {
-      url: env.NEXT_PUBLIC_URL + "/events",
+      url: env.NEXT_PUBLIC_URL + "events",
       lastModified: new Date(),
     },
     {
-      url: env.NEXT_PUBLIC_URL + "/articles",
+      url: env.NEXT_PUBLIC_URL + "articles",
       lastModified: new Date(),
     },
     {
-      url: env.NEXT_PUBLIC_URL + "/speakers",
+      url: env.NEXT_PUBLIC_URL + "speakers",
       lastModified: new Date(),
     },
     {
-      url: env.NEXT_PUBLIC_URL + "/partners",
+      url: env.NEXT_PUBLIC_URL + "partners",
       lastModified: new Date(),
     },
     {
-      url: env.NEXT_PUBLIC_URL + "/members",
+      url: env.NEXT_PUBLIC_URL + "members",
       lastModified: new Date(),
     },
     {
-      url: env.NEXT_PUBLIC_URL + "/mentors",
+      url: env.NEXT_PUBLIC_URL + "mentors",
       lastModified: new Date(),
     },
     {
-      url: env.NEXT_PUBLIC_URL + "/contact-us",
+      url: env.NEXT_PUBLIC_URL + "contact-us",
       lastModified: new Date(),
     },
   ];
@@ -42,31 +42,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const events = items
     .filter((item) => item._type === "event")
     .map((event) => ({
-      url: `${env.NEXT_PUBLIC_URL}/events/${event.slug}`,
+      url: `${env.NEXT_PUBLIC_URL}events/${event.slug}`,
       lastModified: new Date(event._updatedAt),
     }));
   const members = items
     .filter((item) => item._type === "member")
     .map((member) => ({
-      url: `${env.NEXT_PUBLIC_URL}/members/${member.slug}`,
+      url: `${env.NEXT_PUBLIC_URL}members/${member.slug}`,
       lastModified: new Date(member._updatedAt),
     }));
   const speakers = items
     .filter((item) => item._type === "speaker")
     .map((speaker) => ({
-      url: `${env.NEXT_PUBLIC_URL}/speakers/${speaker.slug}`,
+      url: `${env.NEXT_PUBLIC_URL}speakers/${speaker.slug}`,
       lastModified: new Date(speaker._updatedAt),
     }));
   const articles = items
     .filter((item) => item._type === "article")
     .map((article) => ({
-      url: `${env.NEXT_PUBLIC_URL}/articles/${article.slug}`,
+      url: `${env.NEXT_PUBLIC_URL}articles/${article.slug}`,
       lastModified: new Date(article._updatedAt),
     }));
   const partners = items
     .filter((item) => item._type === "partner")
     .map((partner) => ({
-      url: `${env.NEXT_PUBLIC_URL}/partners/${partner.slug}`,
+      url: `${env.NEXT_PUBLIC_URL}partners/${partner.slug}`,
       lastModified: new Date(partner._updatedAt),
     }));
 
