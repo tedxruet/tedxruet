@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   title: "Home",
 };
 
+export const revalidate = 86400;
+
 export default async function Home() {
   const data = await getHomepageData();
 
