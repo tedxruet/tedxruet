@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import SpeakerCard from "@/components/SpeakerCard";
 import SponsorCard from "@/components/SponsorCard";
 import HomeMemberCard from "@/components/HomeMemberCard";
@@ -25,7 +23,7 @@ export default async function Home() {
   }
 
   return (
-    <main>
+    <main className="pt-6">
       <HeroSection
         banners={data.banners.map((img) => urlFor(img).url())}
         title={data.title}
@@ -57,21 +55,23 @@ export default async function Home() {
       </section>
       <section
         aria-label="About TEDxRUET"
-        className="mt-12 py-16 px-4 relative rounded-md text-white overflow-hidden container"
+        className="mt-12 rounded-md text-white overflow-hidden container"
       >
-        <Image
-          src={"/images/tedxruet-stage.JPG"}
-          fill
-          className="object-cover -z-[2] filter blur-[4px]"
-          alt="About TEDxRUET bg."
-        />
-        <div className="overlay bg-black absolute inset-0 -z-[1] opacity-20"></div>
-        <h2 className="text-center text-4xl mb-8">About TEDxRUET</h2>
+        <div className="relative py-16">
+          <Image
+            src={"/images/tedxruet-stage.JPG"}
+            fill
+            className="object-cover -z-[2] filter blur-[4px]"
+            alt="About TEDxRUET bg."
+          />
+          <div className="overlay bg-black absolute inset-0 -z-[1] opacity-20"></div>
+          <h2 className="text-center text-4xl mb-8">About TEDxRUET</h2>
 
-        <div className="max-w-screen-md mx-auto">
-          <p className="md:text-lg lg:text-xl md:text-justify">
-            {data.about.tedxruet}
-          </p>
+          <div className="max-w-screen-md mx-auto">
+            <p className="md:text-lg lg:text-xl md:text-justify">
+              {data.about.tedxruet}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -119,9 +119,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section aria-label="Organizing Team" className="mt-12">
+      <section aria-label="Organizing Team" className="mt-12 container">
         <h2 className="text-center text-4xl mb-8">Organizing Team</h2>
-        <div className="flex overflow-auto md:flex-wrap mx-auto xl:max-w-screen-xl">
+        <div className="flex overflow-auto md:flex-wrap">
           {data.event.members?.map((member) => (
             <div
               key={member.slug}
