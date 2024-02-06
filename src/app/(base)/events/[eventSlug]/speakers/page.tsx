@@ -53,7 +53,7 @@ export default async function AboutPage({ params: { eventSlug } }: Props) {
             />
           </div>
         ))}
-        {event.speakers?.length ? null : <AnnouncingSoonCard />}p
+        {event.speakers?.length ? null : <AnnouncingSoonCard />}
       </div>
     </div>
   );
