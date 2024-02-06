@@ -35,8 +35,8 @@ export const EventsTabs = ({
   };
 
   return (
-    <Tabs id="tabs" value={value} onValueChange={onTabChange}>
-      <TabsList className="justify-start bg-inherit">
+    <Tabs id="tabs" defaultValue="description">
+      <TabsList className="justify-start bg-inherit h-12 overflow-x-auto">
         <TabsTrigger value="description" className="md:text-lg">
           Description
         </TabsTrigger>
