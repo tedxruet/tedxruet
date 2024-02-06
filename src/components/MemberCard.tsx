@@ -24,8 +24,9 @@ const MemberCard = ({
           <Image
             src={member.photoUrl}
             alt={member.name}
-            fill
-            className="object-cover"
+            width={250}
+            height={250}
+            className="object-cover size-full"
             loading="lazy"
           />
         </div>

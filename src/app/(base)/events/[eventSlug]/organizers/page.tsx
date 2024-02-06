@@ -37,10 +37,7 @@ export default async function AboutPage({ params: { eventSlug } }: Props) {
       </p>
       <div className="flex flex-wrap">
         {event.members?.map((member) => (
-          <div
-            key={member.slug}
-            className="p-1 lg:w-1/5 md:w-3/12 sm:w-4/12 w-6/12"
-          >
+          <div key={member.slug} className="p-1 lg:w-1/4 sm:w-1/3 w-1/2">
             <MemberCard member={member} />
           </div>
         ))}

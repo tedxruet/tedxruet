@@ -25,8 +25,8 @@ const HomeMemberCard = ({
         <Card className="h-full overflow-hidden hover:shadow-md hover:bg-primary-foreground transition duration-300">
           <Image
             src={member.photoUrl}
-            width={350}
-            height={600}
+            width={250}
+            height={250}
             alt={member.name}
             className="h-64 w-full object-cover"
             loading="lazy"

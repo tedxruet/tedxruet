@@ -7,7 +7,7 @@ type Props = {
   params: { eventSlug: string };
 };
 
-const EventLayout = ({ params: { eventSlug }, children }: Props) => {
+const EventLayout = async ({ params: { eventSlug }, children }: Props) => {
   return (
     <>
       <div className="md:fixed md:top-16 md:left-0 md:pl-4 md:w-56 xl:left-[calc(100vw/2-640px)]">

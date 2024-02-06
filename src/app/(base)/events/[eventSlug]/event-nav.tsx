@@ -45,7 +45,7 @@ export function EventNav({ className, eventSlug }: Props) {
       },
       {
         title: "Organizers",
-        href: `/events/${eventSlug}/team`,
+        href: `/events/${eventSlug}/organizers`,
         icon: UsersIcon,
       },
       {
