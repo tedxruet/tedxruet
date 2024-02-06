@@ -55,6 +55,136 @@ export const getEventsList = async () => {
   );
 };
 
+export const getEventInfo = (slug = "") => {
+  return client.fetch<
+    Pick<
+      FullEventData,
+      | "title"
+      | "slug"
+      | "preamble"
+      | "registrationLink"
+      | "coverUrl"
+      | "venue"
+      | "time"
+      | "content"
+    >
+  >(
+    `
+    *[_type=='event' && slug.current==$slug][0] {
+      title,
+      preamble,
+      venue,
+      time,
+      registrationLink,
+      'slug': @['slug'].current,
+      'coverUrl': @['cover'].asset->url,
+      content
+    }
+  `,
+    { slug }
+  );
+};
+
+export const getEventSpeakers = (slug = "") => {
+  return client.fetch<
+    Pick<FullEventData, "title" | "slug" | "preamble" | "coverUrl" | "speakers">
+  >(
+    `
+    *[_type=='event' && slug.current==$slug][0] {
+      title,
+      preamble, 
+      'slug': @['slug'].current,
+      'coverUrl': @['cover'].asset->url,
+      'speakers': speakers[] -> {
+        name, 
+        designation,
+        photo,
+        'slug':slug.current
+      },
+    }
+  `,
+    { slug }
+  );
+};
+
+export const getEventSponsors = (slug = "") => {
+  return client.fetch<
+    Pick<FullEventData, "title" | "slug" | "preamble" | "coverUrl" | "sponsors">
+  >(
+    `
+    *[_type=='event' && slug.current==$slug][0] {
+      title,
+      preamble, 
+      'slug': @['slug'].current,
+      'coverUrl': @['cover'].asset->url,
+      'sponsors': sponsors[]{
+        type, 
+        'slug': @.partner->slug.current, 
+        'name': @.partner->name, 
+        'logoUrl':@.partner->logo.asset->url 
+      },
+    }
+  `,
+    { slug }
+  );
+};
+
+export const getEventMembers = (slug = "") => {
+  return client.fetch<
+    Pick<FullEventData, "title" | "slug" | "preamble" | "coverUrl" | "members">
+  >(
+    `
+    *[_type=='event' && slug.current==$slug][0] {
+      title,
+      preamble, 
+      'slug': @['slug'].current,
+      'coverUrl': @['cover'].asset->url,
+      'members': members[]{
+        post, 
+        'slug': @.member->slug.current,
+        'name': @.member->name, 
+        'photoUrl':@.member->photo.asset->url
+      },
+    }
+  `,
+    { slug }
+  );
+};
+
+export const getEventGallery = (slug = "") => {
+  return client.fetch<
+    Pick<FullEventData, "title" | "slug" | "preamble" | "coverUrl" | "gallery">
+  >(
+    `
+    *[_type=='event' && slug.current==$slug][0] {
+      title,
+      preamble,
+      gallery,
+    }
+  `,
+    { slug }
+  );
+};
+
+export const getEventMentors = (slug = "") => {
+  return client.fetch<
+    Pick<FullEventData, "title" | "slug" | "preamble" | "coverUrl" | "mentors">
+  >(
+    `
+    *[_type=='event' && slug.current==$slug][0] {
+      title,
+      preamble,
+      'mentors':mentors[]->{
+        'slug': slug.current,
+        name, 
+        'photoUrl': photo.asset->url
+      },
+    }
+  `,
+    { slug }
+  );
+};
+
 export const getEvent = (slug = "") => {
   return client.fetch<FullEventData>(
     `
@@ -75,11 +205,11 @@ export const getEvent = (slug = "") => {
           'slug':slug.current
         },
       'members': members[]{
-          post, 
-          'slug': @.member->slug.current,
-          'name': @.member->name, 
-          'photoUrl':@.member->photo.asset->url
-        },
+        post, 
+        'slug': @.member->slug.current,
+        'name': @.member->name, 
+        'photoUrl':@.member->photo.asset->url
+      },
         'mentors':mentors[]->{
           'slug': slug.current,
           name, 

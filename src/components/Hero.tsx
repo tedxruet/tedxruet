@@ -1,19 +1,19 @@
 "use client";
-import { Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/pagination";
-import "@/styles/slider.css";
 
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
   CardFooter,
-} from "./ui/card";
+} from "@/components/ui/card";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
@@ -31,21 +31,24 @@ const HeroSection = ({
   return (
     <section aria-label="Hero Section" className="md:container">
       <div className="relative">
-        <Swiper modules={[Pagination]} pagination={{ enabled: true }} loop>
-          {banners.map((banner, i) => (
-            <SwiperSlide key={i}>
-              <div className="aspect-video md:aspect-[16/6] lg:aspect-[16/5] relative z-0 md:rounded-lg overflow-hidden">
-                <div className="absolute inset-0 bg-black z-[1] opacity-30"></div>
+        <Carousel
+          plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+        >
+          <CarouselContent>
+            {banners.map((banner, i) => (
+              <CarouselItem key={i}>
                 <Image
                   src={banner}
-                  fill
+                  width={1360}
+                  height={460}
                   alt="Banner image"
-                  className="object-cover select-none"
+                  className="h-64 md:h-96 lg:h-[28rem] rounded-lg overflow-hidden block object-cover select-none"
                 />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 inset-x-0 hidden lg:grid place-items-center z-[1]">
           <HeadingSection title={title} subtitle={subtitle} slug={slug} />
         </div>
