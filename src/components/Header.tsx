@@ -86,6 +86,13 @@ function Navigation({ events }: { events: LatestEventData[] }) {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
+          <Link href="/" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Home
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <NavigationMenuTrigger>Events</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-1 md:gap-3 p-3 md:p-6 md:w-[450px] lg:w-[540px] lg:grid-cols-[.8fr_1fr]">
@@ -141,9 +148,9 @@ function Navigation({ events }: { events: LatestEventData[] }) {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/contact-us" legacyBehavior passHref>
+          <Link href="/about-us" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Contact
+              About
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
