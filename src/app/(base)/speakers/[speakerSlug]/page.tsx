@@ -12,6 +12,8 @@ import type { Metadata } from "next";
 
 type Props = { params: { speakerSlug: string } };
 
+export const revalidate = 0;
+
 export async function generateMetadata({
   params: { speakerSlug },
 }: Props): Promise<Metadata> {

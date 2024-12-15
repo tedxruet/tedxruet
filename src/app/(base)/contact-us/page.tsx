@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 0;
+
 const pageSize = 5;
 
 const ContactUs = async () => {

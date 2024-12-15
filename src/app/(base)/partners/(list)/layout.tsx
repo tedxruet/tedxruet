@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const revalidate = 86400;
+export const revalidate = 0;
 
 const TeamLayout = async ({ children }: Props) => {
   const eventsList = await getEventsList();

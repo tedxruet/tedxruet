@@ -9,7 +9,7 @@ type Props = {
   params: { eventSlug: string };
 };
 
-export const revalidate = 86400;
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const event = await getEventMembers(params.eventSlug);

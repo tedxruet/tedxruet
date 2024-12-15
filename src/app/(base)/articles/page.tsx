@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 dayjs.extend(relativeTime);
 
 export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Blog",
   description: "TEDx Rajshahi University of Engineering & Technology blog.",

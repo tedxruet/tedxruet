@@ -15,6 +15,7 @@ import { urlFor } from "@/lib/sanity";
 import { getPartner } from "@/lib/sanity/partners";
 import type { Metadata } from "next";
 
+export const revalidate = 0;
 type Props = { params: { partnerSlug: string } };
 
 export async function generateMetadata({
