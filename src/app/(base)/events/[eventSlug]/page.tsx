@@ -60,7 +60,7 @@ const EventPage = async ({ params: { eventSlug } }: Props) => {
       <Button disabled={!event.registrationLink} asChild>
         <Link href={event.registrationLink ?? ""}>
           <LinkIcon size={18} />
-          &nbsp;Registration Link
+          &nbsp;Attend The Event
         </Link>
       </Button>
 
