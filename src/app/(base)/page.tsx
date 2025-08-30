@@ -80,7 +80,7 @@ export default async function Home() {
         {data.partners?.length ? (
           <div
             className={cn(
-              "flex overflow-auto md:flex-wrap md:justify-center mx-auto 2xl:max-w-screen-2xl bg-muted dark:bg-muted-foreground rounded-md",
+              "flex overflow-auto md:flex-wrap md:justify-center mx-auto 2xl:max-w-screen-2xl rounded-md",
               data.partners.length === 1 ? "justify-center" : ""
             )}
           >
